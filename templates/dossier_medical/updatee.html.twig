@@ -1,0 +1,96 @@
+{% extends 'base(back).html.twig' %}
+
+{% block body %}
+	<title>Medecin</title>
+	<body
+		class="togle-sidebar-btn">
+		<!-- ======= Sidebar ======= -->
+
+
+		<main id="main" class="main">
+
+			<div class="pagetitle">
+				<h1>Medical</h1>
+				<nav>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="index.html">Home</a>
+						</li>
+						<li class="breadcrumb-item">Medical</li>
+						<li class="breadcrumb-item active">Dossier Medical</li>
+					</ol>
+				</nav>
+			</div>
+			<!-- End Page Title -->
+
+			<section class="section">
+				<div class="row">
+					<div class="col-lg-6"></div>
+
+					<div class="col-lg-6">
+
+						<a id="mon-bouton-1" href="{{ path('add_dossier') }}">Ajouter Dossier Medical
+						</a>
+
+					</div>
+
+					<div class="cardd">
+						<div class="card-body">
+							<h5 class="card-title">Dossier medical</h5>
+							<p>
+								Les dossiers medical des Patient</p>
+							<!-- Active table-borderless -->
+
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">Certificat</th>
+										<th scope="col">Groupe Sanguin</th>
+										<th scope="col">ID Ordonnace
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for s in  dossier %}
+										<tr>
+											<th scope="row">{{s.id}}</th>
+											<td>
+												{{ s.Certificat}}</td>
+											<td>
+												{{ s.GroupeSanguin}}</td>
+											<td>
+												{{ s.Ordonnance.id }}</td>
+
+
+											<td>
+												<a href="{{ path('update1',{'id':s.id}) }}">
+													<img src="{{asset('img/56.png')}}" alt=""></a>
+											</td>
+											<td>
+												<a href="{{ path('remove1',{'id':s.id}) }}"><img src="{{asset('img/55.png')}}" alt=""></a>
+											</td>
+
+										</tr>
+									{% endfor %}
+
+
+								</tbody>
+							</table>
+							<!-- End Tables without borders -->
+
+						</div>
+					</div>
+
+
+				</div>
+
+
+			</section>
+
+		</main>
+		<!-- End #main -->
+
+
+	</body>
+{% endblock %}

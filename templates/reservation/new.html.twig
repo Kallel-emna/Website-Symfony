@@ -1,0 +1,18 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}ReservationChambre
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<h1 class="card-title">Créer une nouvelle  ReservationChambre</h1>
+
+		<div class="card-body">
+
+
+			{{ include('reservation/_form.html.twig') }}
+
+			<a href="{{ path('app_reservation_chambre_index') }}" class="btn btn-lg btn-info">Retour à la liste</a>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base(back).html.twig' %}
+
+
+{% block body %}
+
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Ajouter Consultation</h5>
+
+			<!-- General Form Elements -->
+			{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+			<label for="inputText" class="col-sm-4 col-form-label">Notes</label>
+			<div class="col-sm-10">
+				{{ form_widget(form.notes, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			{{ form_errors(form.notes,{'attr':{'class':'text-danger'}}) }}
+
+
+			<label for="inputText" class="col-sm-4 col-form-label">Prix</label>
+			<div class="col-sm-10">
+				{{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+
+			</div>
+			{{ form_errors(form.prix,{'attr':{'class':'text-danger'}}) }}
+
+
+			{{ form_end(form) }}
+
+		</div>
+		<a href="{{ path('app_consultation_index') }}" class="btn btn-lg btn-info">Retour à la liste</a>
+	{% endblock %}

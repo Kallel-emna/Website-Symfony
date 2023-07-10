@@ -1,0 +1,92 @@
+{% extends 'base(back).html.twig' %}
+
+{% block body %}
+	<title>Medecin</title>
+	<body>
+
+
+		<div class="carddd">
+
+			{{ form_start(searchForm,{attr:{novalidate:'novalidate'}}) }}
+			{{ form_widget(searchForm.id, {'attr': {'class': 'form-control', 'placeholder':"Chercher Bilan Par Id "}}) }}
+
+
+			<div class="col-12">
+				{{ form_label(searchForm.Chercher, null, {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(searchForm.Chercher, {'attr': {'class': 'form-control'}}) }}
+
+			</div>
+		</div>
+		<div class="col-12">
+
+			<div class="card recent-sales overflow-auto">
+				<div class="card-body">
+					<a href="{{ path('addB') }}" class="btn btn-lg btn-secondary" >Ajouter un bilan</a>
+					<h5 class="card-title">Nos bilans </h5>
+
+
+					<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+
+					</div>
+					<div class="dataTable-container">
+						<table class="table table-borderless datatable dataTable-table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Antecedent</th>
+									<th scope="col">Taille</th>
+									<th scope="col">Poids</th>
+
+
+									<th scope="col">Examens Biologiques</th>
+
+
+								</tr>
+							</thead>
+							<tbody>
+								{% for s in  bilan %}
+									<tr>
+										<th scope="row">{{s.id}}</th>
+										<td>
+											{{ s.Antecedents }}</td>
+										<td>
+											{{ s.Taille}}</td>
+										<td>
+											{{ s.Poids}}</td>
+
+										<td>
+											{{ s.ExamensBiologiques }}</td>
+										
+
+
+										<td>
+											<a href="{{ path('updateB',{'id':s.id}) }}">
+												<img src="{{asset('img/56.png')}}" alt=""></a>
+										</td>
+										<td>
+											<a href="{{ path('removeB',{'id':s.id}) }}"><img src="{{asset('img/55.png')}}" alt=""></a>
+										</td>
+
+									</tr>
+								{% endfor %}
+
+
+							</tbody>
+						</table>
+						<!-- End Tables without borders -->
+
+					</div>
+				</div>
+
+
+			</div>
+
+
+		</section>
+
+
+		<!-- End #main -->
+
+
+	</body>
+{% endblock %}

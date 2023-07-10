@@ -1,0 +1,81 @@
+{% extends 'base(back).html.twig' %}
+{% block body %}
+
+
+	<title>Medecin</title>
+	<body
+		class="togle-sidebar-btn">
+		<!-- ======= Sidebar ======= -->
+		
+
+		<main id="main" class="main">
+
+			<div class="pagetitle">
+				<h1>Bilan Medical</h1>
+				<nav>
+					<ol class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="index.html">Home</a>
+						</li>
+						<li class="breadcrumb-item">Medical</li>
+						<li class="breadcrumb-item active">Bilan medical</li>
+					</ol>
+				</nav>
+			</div>
+			<!-- End Page Title -->
+			<section class="section">
+				<div class="row">
+					<div class="col-lg-6">
+
+
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">Bilan Medical d'un patient
+								</h5>
+
+								{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+
+
+								<div class="col-12">
+									{{ form_label(form.Antecedents, null, {'label_attr': {'class': 'form-label'}}) }}
+									{{ form_widget(form.Antecedents, {'attr': {'class': 'form-control'}}) }}
+
+								</div>
+								<br>
+
+								<div class="col-12">
+									{{ form_label(form.Poids, null, {'label_attr': {'class': 'form-label'}}) }}
+									{{ form_widget(form.Poids, {'attr': {'class': 'form-control'}}) }}
+
+								</div>
+								<br>
+								<div class="col-12">
+									{{ form_label(form.Taille, null, {'label_attr': {'class': 'form-label'}}) }}
+									{{ form_widget(form.Taille, {'attr': {'class': 'form-control'}}) }}
+
+								</div>
+								<br>
+								<div class="col-12">
+									{{ form_label(form.ExamensBiologiques, null, {'label_attr': {'class': 'form-label'}}) }}
+									{{ form_widget(form.ExamensBiologiques, {'attr': {'class': 'form-control'}}) }}
+
+								</div>
+								<br>
+
+							
+								<br>
+
+
+								{{ form_end(form) }}
+
+
+							</div>
+
+
+						</section>
+
+					</main>
+
+
+				</body>
+			{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}ReservationChambre index
+{% endblock %}
+
+{% block body %}
+	<div class="col-12">
+
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				<a href="{{ path('app_reservation_chambre_new') }}" class="btn btn-lg btn-secondary">creer une Reservation</a>
+				<h5 class="card-title">Reservation Chambre</h5>
+
+
+			</div>
+			<div class="dataTable-container">
+				<table class="table table-borderless datatable dataTable-table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Id chambre</th>
+							<th>nom patient</th>
+							<th>prenom patient</th>
+							<th>Date_admission</th>
+							<th>Date_sortie</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						{% if reservation_chambres is not empty %}
+							{% for reservation_chambre in reservation_chambres %}
+								<tr>
+									<td>{{ reservation_chambre.id }}</td>
+									<td>{{ reservation_chambre.chambre.id }}</td>
+									<td>{{ reservation_chambre.user.lastname }}</td>
+									<td>{{ reservation_chambre.user.firstname }}</td>
+									<td>{{ reservation_chambre.dateAdmission ? reservation_chambre.dateAdmission|date('Y-m-d') : '' }}</td>
+									<td>{{ reservation_chambre.dateSortie ? reservation_chambre.dateSortie|date('Y-m-d') : '' }}</td>
+									<td>
+										<a href="{{ path('app_reservation_chambre_show', {'id': reservation_chambre.id}) }}">Montrer</a>
+										<a href="{{ path('app_reservation_chambre_edit', {'id': reservation_chambre.id}) }}">Modifier</a>
+									</td>
+								</tr>
+							{% endfor %}
+						{% else %}
+							<tr>
+								<td colspan="7">no records found</td>
+							</tr>
+						{% endif %}
+
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+
+	</div>
+
+</div>{% endblock %}

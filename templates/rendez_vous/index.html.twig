@@ -1,0 +1,42 @@
+{% extends 'base(back).html.twig' %}
+
+{% block body %}
+
+
+	<h5 class="card-title">Rendez-Vous</h5>
+	<a href="{{ path('app_rendez_vous_new') }}">Create new</a>
+	<!-- Default Table -->
+	<table class="table">
+		<thead>
+			<tr>
+
+				<th>Id</th>
+				<th>Heures</th>
+				<th>Date rendez vous</th>
+				<th>actions</th>
+				<th>Confirmation</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for rendez_vou in rendez_vouses %}
+				<tr>
+					<td>{{ rendez_vou.id }}</td>
+					<td>{{ rendez_vou.time ? rendez_vou.time|date('H:i:s') : '' }}</td>
+					<td>{{ rendez_vou.dateRendezvous ? rendez_vou.dateRendezvous|date('Y-m-d') : '' }}</td>
+
+					<td>
+						<a href="{{ path('app_rendez_vous_edit', {'id': rendez_vou.id}) }}">Modifier</a>
+						<a href="{{ path('app_rendez_vous_delete', {'id': rendez_vou.id}) }}">Supprimer</a>
+					</td>
+					<td>{{ rendez_vou.Confirmation}}</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">Pas de rendez vous</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<!-- End Default Table Example -->
+</div>
+<!-- End #main --></body>{% endblock %}

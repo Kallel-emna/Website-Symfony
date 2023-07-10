@@ -1,0 +1,59 @@
+<h1 align ="center">Facture</h1>
+
+<hr>
+<p>Nom de l'entreprise : Clinimate</p>
+<p>Adresse : {{ reservation_chambre.user.address }}</p>
+<p>Téléphone : {{ reservation_chambre.user.telephone }}</p>
+<p>E-mail :{{ reservation_chambre.user.email }}</p>
+
+<hr>
+
+<p>Numéro de facture : {{ reservation_chambre.id }}</p>
+<p>Date de facture : {{ "now"|date("d-m-Y") }}</p>
+<p>Date d'échéance : {{ "now"|date_modify("+30 days")|date("d-m-Y") }}</p>
+
+<hr>
+
+<table class="table" >
+    <tbody>
+        <tr>
+            <th>Nom du patient</th>
+            <td>{{ reservation_chambre.user.lastname }}</td>
+        </tr>
+        <tr>
+            <th>Prénom du patient</th>
+            <td>{{ reservation_chambre.user.firstname }}</td>
+        </tr>
+        <tr>
+            <th>Date d'admission</th>
+            <td>{{ reservation_chambre.dateAdmission ? reservation_chambre.dateAdmission|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Date de sortie</th>
+            <td>{{ reservation_chambre.dateSortie ? reservation_chambre.dateSortie|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Nombre de jours passés à l'hôpital</th>
+            <td>{{ nombreJours }}</td>
+        </tr>
+        <tr>
+            <th>avance</th>
+            <td>{{ avance }}</td>
+        </tr>
+        <tr>
+            <th>prix a payer sans avance  </th>
+            <td>{{ paye }}</td>
+            <hr>
+            <th>ce dont vous etes redevable</th>
+
+            <td>{{ prixtotal }}</td>
+        </tr>
+</table>
+
+<hr>
+
+<p>Merci de régler la facture avant la date d'échéance. Pour toute question ou demande d'information complémentaire, veuillez nous contacter à l'adresse e-mail ou au numéro de téléphone ci-dessus.</p>
+
+<a href="{{ path('app_reservation_chambre_index') }}">Retour à la liste des réservations de chambre</a>
+
+

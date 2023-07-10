@@ -1,0 +1,39 @@
+{% extends 'base(back).html.twig' %}
+{% block body %}
+
+
+	<title>Medecin</title>
+
+
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Ajouter un dossier médical
+			</h5>
+
+			{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+
+			<div class="col-12">
+				{{ form_label(form.Certificat, null, {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.Certificat, {'attr': {'class': 'form-control'}}) }}
+
+			</div>
+			<br>
+
+			<div class="col-12">
+				{{ form_label(form.GroupeSanguin, null, {'label_attr': {'class': 'form-label'}}) }}
+				{{ form_widget(form.GroupeSanguin, {'attr': {'class': 'form-control'}}) }}
+
+			</div>
+			<br>
+
+
+			{{ form_end(form) }}
+
+
+		</div>
+
+
+	</section>
+
+
+</body>{% endblock %}

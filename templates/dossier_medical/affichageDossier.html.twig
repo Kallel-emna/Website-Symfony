@@ -1,0 +1,92 @@
+{% extends 'base(back).html.twig' %}
+
+{% block body %}
+	<title>Medecin</title>
+
+
+	<!-- End Page Title -->
+
+
+	<div class="col-12">
+
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				<div class="col-lg-6">
+
+					<a  href="{{ path('add_dossier') }}" class="btn btn-lg btn-secondary">Ajouter Dossier Medical
+					</a>
+
+
+				</div>
+				<h5 class="card-title">Dossier medical</h5>
+
+
+				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+					<div class="carddd">
+
+						{{ form_start(searchForm,{attr:{novalidate:'novalidate'}}) }}
+						{{ form_widget(searchForm.id, {'attr': {'class': 'form-control', 'placeholder':"Chercher Dossier Par Id "}}) }}
+
+
+						<div class="col-12">
+							{{ form_label(searchForm.Chercher, null, {'label_attr': {'class': 'form-label'}}) }}
+							{{ form_widget(searchForm.Chercher, {'attr': {'class': 'form-control'}}) }}
+
+						</div>
+					</div>
+
+				</div>
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Certificat</th>
+								<th scope="col">Groupe Sanguin</th>
+								<th scope="col">ID Ordonnace
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for s in  dossier %}
+								<tr>
+									<th scope="row">{{s.id}}</th>
+									<td>
+										{{ s.Certificat}}</td>
+									<td>
+										{{ s.GroupeSanguin}}</td>
+									<td>
+										{{ s.Ordonnance.id }}</td>
+
+
+									<td>
+										<a href="{{ path('update1',{'id':s.id}) }}">
+											<img src="{{asset('img/56.png')}}" alt=""></a>
+									</td>
+									<td>
+										<a href="{{ path('remove1',{'id':s.id}) }}"><img src="{{asset('img/55.png')}}" alt=""></a>
+									</td>
+									<td>
+										<a href="{{ path('show',{'id':s.id})}}">Afficher Ces Bilans
+										</a>
+									</td>
+
+								</tr>
+							{% endfor %}
+
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<!-- End #main -->
+
+
+</body>{% endblock %}

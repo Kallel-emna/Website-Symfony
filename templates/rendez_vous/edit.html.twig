@@ -1,0 +1,44 @@
+
+{% extends 'base(back).html.twig' %}
+
+
+{% block body %}
+
+
+   <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>General Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+<title>New Rendez-Vous</title>
+     <h1>Modifier RendezVous</h1>
+
+    {{ include('rendez_vous/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_rendez_vous_index') }}">Retour à liste</a>
+
+    {{ include('rendez_vous/_delete_form.html.twig') }}
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+</body>
+
+{% endblock %}
+
+
+

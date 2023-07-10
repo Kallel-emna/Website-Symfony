@@ -1,0 +1,23 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Nouveau Categorie
+{% endblock %}
+
+{% block body %}
+
+	<div class="card-body">
+		<h5 class="card-title">Ajouter Catégorie</h5>
+
+		<!-- General Form Elements -->
+		{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+		<label for="inputText" class="col-sm-4 col-form-label">Nom</label>
+		<div class="col-sm-10">
+			{{ form_widget(form.nom_cat, {'attr': {'class': 'form-control'}}) }}
+		</div>
+		{{ form_errors(form.nom_cat,{'attr':{'class':'text-danger'}}) }}
+
+		{{ form_end(form) }}
+
+	</div>
+</div>
+<a href="{{ path('app_categorie_index') }}" class="btn btn-lg btn-info">Retour à la liste</a>{% endblock %}

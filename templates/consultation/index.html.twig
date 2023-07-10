@@ -1,0 +1,65 @@
+{% extends 'base(back).html.twig' %}
+
+{% block body %}
+
+
+	<div class="col-12">
+
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				<a href="{{ path('app_consultation_new') }}"class="btn btn-secondary" >Ajouter Consultation</a>
+				<h5 class="card-title">Les consultations
+				</h5>
+
+
+			</div>
+			<div class="dataTable-container">
+				<table class="table table-borderless datatable dataTable-table">
+					<thead>
+						<tr>
+
+							<th>Id consultation</th>
+							<th>Notes</th>
+							<th>Prix</th>
+							<th>Date</th>
+							<th>Actions</th>
+							<th>Ajouter Ordonnance</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{% for consultation in consultations  %}
+							{% for rendez_vou in rendez_vouses %}
+								<tr>
+									<td>{{ consultation.id}}</td>
+									<td>{{ consultation.notes }}</td>
+									<td>{{ consultation.prix }}</td>
+									<td>{{ rendez_vou.time ? rendez_vou.time|date('H:i:s') : '' }}
+										{{ rendez_vou.dateRendezvous ? rendez_vou.dateRendezvous|date('Y-m-d') : '' }}</td>
+
+									<td>
+
+										<a href="{{ path('app_consultation_edit', {'id':consultation.id}) }}">Modifier</a>
+										<a href="{{ path('app_consultation_delete', {'id':consultation.id}) }}">Supprimer</a>
+
+									</td>
+									<td>
+										<a href="{{ path('app_ordonnance_index', {'id':consultation.id}) }}" class="btn btn-lg btn-primary">Ajout Ordonnance</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="5">no records found</td>
+								</tr>
+
+							{% endfor %}
+						{% endfor %}
+					</tbody>
+				</table>
+				<!-- End Default Table Example -->
+			</div>
+		</div>
+
+
+	</div>
+</div></div></body></div></body></section></main><!-- End #main --></body>{% endblock %}

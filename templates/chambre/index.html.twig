@@ -1,0 +1,58 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Chambre 
+{% endblock %}
+{% block body %}
+	<div class="col-12">
+
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				
+					<a href="{{ path('app_chambre_new') }}" class="btn btn-lg btn-secondary">Ajouter une chambre</a>
+				
+				<h5 class="card-title">Nos chambres
+				</h5>
+
+
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Etage</th>
+								<th>Prix</th>
+								<th>Capacite</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for chambre in chambres %}
+								<tr>
+									<td>{{ chambre.id }}</td>
+									<td>{{ chambre.etage }}</td>
+									<td>{{ chambre.prix }}</td>
+									<td>{{ chambre.capacite }}</td>
+									<td>
+										<button>
+											<a href="{{ path('app_chambre_show', {'id': chambre.id}) }}">Afficher</a>
+										</button>
+										<button>
+											<a href="{{ path('app_chambre_edit', {'id': chambre.id}) }}">Modifier</a>
+										</button>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="5">Pas de chambre</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+
+
+			</div>
+
+
+		</body>
+	{% endblock %}

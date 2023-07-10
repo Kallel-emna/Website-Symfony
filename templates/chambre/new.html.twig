@@ -1,0 +1,20 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %} Chambre
+{% endblock %}
+
+{% block body %}
+	<div class="card">
+		<h1 class="card-title">Créer une nouvelle  Chambre</h1>
+
+		<div class="card-body">
+
+
+			{{ include('chambre/_form.html.twig') }}
+
+			
+				<a href="{{ path('app_chambre_index') }}" class="btn btn-lg btn-info">Retour à la liste</a>
+			
+		</div>
+	</div>
+{% endblock %}

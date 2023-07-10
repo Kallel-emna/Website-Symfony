@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ordonnance médicale</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+			}
+
+			.container {
+				max-width: 800px;
+				margin: auto;
+				padding: 20px;
+				border: 1px solid #ccc;
+			}
+
+			.header {
+				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			.doctor-info {
+				float: left;
+				width: 50%;
+			}
+
+			.patient-info {
+				float: right;
+				width: 50%;
+			}
+
+			.clearfix::after {
+				content: "";
+				clear: both;
+				display: table;
+			}
+
+			.prescription {
+				margin-top: 20px;
+			}
+
+			.prescription table {
+				width: 100%;
+				border-collapse: collapse;
+			}
+
+			.prescription th,
+			.prescription td {
+				padding: 10px;
+				border: 1px solid #ccc;
+				text-align: center;
+			}
+
+			.footer {
+				margin-top: 20px;
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				{% for ordonnance in ordonnances %}
+
+					<h1>Ordonnance médicale</h1>
+				</div>
+				<div class="doctor-info">
+					<h3>Informations sur le médecin</h3>
+					<p>Nom : Dr
+					</p>
+					<p>Adresse : 123 rue des Médecins</p>
+					<p>Téléphone : 01 23 45 67 89</p>
+				</div>
+				<div class="patient-info">
+					<h3>Informations sur le patient</h3>
+					<p>
+						Identifiant:{{ ordonnance.id }}</p>
+					<p>
+						Nom:
+						{{ ordonnance.nompatient }}
+					</p>
+					<p>Date de consultation :
+						{{ ordonnance.date ? ordonnance.date|date('Y-m-d') : '' }}</p>
+
+				</div>
+				<div class="clearfix"></div>
+				<div class="prescription">
+					<h2>Prescription médicale</h2>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Médicament</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{ ordonnance.medicament }}</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="footer">
+					<p>Fait à Tunis le
+						{{ ordonnance.date ? ordonnance.date|date('Y-m-d') : '' }}</p>
+					<p>Signature du médecin :</p>
+				</div>
+			</div>
+		</body>
+	</body>
+</html>{% endfor %}{% endblock %}

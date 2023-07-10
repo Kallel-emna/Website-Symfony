@@ -1,0 +1,85 @@
+{% extends 'base(back).html.twig' %}
+
+
+{% block css %}
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.4/main.min.css" integrity="sha256-EAq+X/hXd44MlSOCkm9hchPJT78vQ4UBTT7FBkQl9qE=" crossorigin="anonymous">
+	<style>
+		#calendrier {
+			width: 80%;
+			margin: auto;
+		}
+		.fc-toolbar {
+			text-transform: uppercase;
+		}
+		.button-div {
+			margin-top: 20px;
+			align-items: center;
+			justify-content: center;
+			display: flex;
+		}
+	</style>
+
+{% endblock %}
+
+{% block title %}Calendrier
+{% endblock %}
+
+{% block body %}
+
+	<div id="calendrier"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.4/main.min.js" integrity="sha256-Dfd6KUTo4z5AmFLv2yo91WxDAJyDtbZH3PPbf7o/kN4=" crossorigin="anonymous"></script>
+<script>
+
+	window.onload = () => {
+let calendarElt = document.querySelector("#calendrier")
+
+let calendar = new FullCalendar.Calendar(calendarElt, {
+titleFormat: {
+month: 'long',
+year: 'numeric'
+},
+initialView: 'dayGridMonth',
+locale: 'fr',
+timeZone: 'Africa/Tunis',
+allDaySlot: true,
+headerToolbar: {
+start: 'prev,next today',
+center: 'title',
+end: 'dayGridMonth,timeGridWeek,listYear'
+},
+buttonText: {
+month: 'Mois',
+list: 'Liste',
+week: 'Semaine',
+today: "Aujourd'hui"
+},
+events: {{ data|raw }},
+editable: true,
+eventResizableFromStart: true
+})
+
+calendar.on('eventChange', (e) => {
+let url = `/api/${
+e.event.id
+}/edit`
+let donnees = {
+"title": e.event.title,
+"description": e.event.extendedProps.description,
+"start": e.event.start,
+"end": e.event.end,
+"backgroundColor": e.event.backgroundColor,
+"borderColor": e.event.borderColor,
+"textColor": e.event.textColor,
+"allDay": e.event.allDay
+}
+let xhr = new XMLHttpRequest
+xhr.open("PUT", url)
+xhr.send(JSON.stringify(donnees))
+})
+
+
+calendar.render()
+}
+</script>{% endblock %}
+{% block js %}{% endblock %}

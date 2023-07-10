@@ -1,0 +1,78 @@
+{% extends 'base(back).html.twig' %}
+
+{% block body %}
+
+
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Ordonnance</h5>
+
+			<a href="{{ path('app_ordonnance_tri') }}" class="btn btn-lg btn-success">Trier par nom patient</a> <br>			<!-- Default Table -->
+			<div class="col-12">
+
+
+				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+					<div class="col-lg-6">
+						{{ form_start(searchForm,{attr:{novalidate:'novalidate'}}) }}
+						{{ form_widget(searchForm.nompatient, {'attr': {'class': 'form-control', 'placeholder':"Chercher Patient Par Id "}}) }}
+
+
+						
+							{{ form_label(searchForm.submit, null, {'label_attr': {'class': 'form-label'}}) }}
+							{{ form_widget(searchForm.submit, {'attr': {'class': 'form-control'}})  }}
+						</div>
+					</div>
+
+				</div>
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<thead>
+							<tr>
+
+								<th>Id ordonnance</th>
+								<th>Nom patient</th>
+								<th>Date</th>
+								<th>Médicament</th>
+								<th>Notes</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for ordonnance in ordonnances %}
+								{% for consultation in consultations  %}
+
+									<tr>
+										<td>{{ ordonnance.id }}</td>
+										<td>{{ ordonnance.nompatient }}</td>
+										<td>{{ ordonnance.date ? ordonnance.date|date('Y-m-d') : '' }}</td>
+										<td>{{ ordonnance.medicament }}</td>
+										<td>{{ consultation.notes }}</td>
+
+										<td>
+
+											<a href="{{ path('app_ordonnance_edit', {'id': ordonnance.id}) }}">Modifier</a>
+											<a href="{{ path('app_ordonnance_delete', {'id': ordonnance.id}) }}">Supprimer</a>
+											<a href="{{ path('app_ordonnance_ordonnance', {'id': ordonnance.id}) }}">Télecharger pdf</a>
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="6">no records found</td>
+									</tr>
+								{% endfor %}
+							{% endfor %}
+
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<a href="{{ path('app_ordonnance_new') }}" class="btn btn-lg btn-secondary">Ajouter Ordonnance</a>
+		</div>
+
+	</div>
+	<!-- End Default Table Example -->
+</div>
+
+
+<!-- End #main --></body>{% endblock %}

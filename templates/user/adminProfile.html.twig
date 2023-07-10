@@ -1,0 +1,67 @@
+{% extends 'base(back).html.twig' %}
+{% block body %}
+	<section class="section profile">
+		<div class="row">
+
+
+			<div class="col-xl-8">
+
+				<div class="card">
+					<div
+						class="card-body pt-3">
+						<!-- Bordered Tabs -->
+
+						<div class="tab-content pt-2">
+
+							<div class="tab-pane fade show active profile-overview" id="profile-overview">
+
+								<h5 class="card-title">Profile Details</h5>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label ">Your Id</div>
+									<div class="col-lg-9 col-md-8">{{ user.id }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">First Name
+									</div>
+									<div class="col-lg-9 col-md-8">{{ user.firstname }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Last Name</div>
+									<div class="col-lg-9 col-md-8">{{ user.lastname }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Email</div>
+									<div class="col-lg-9 col-md-8">{{ user.email }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Telephone</div>
+									<div class="col-lg-9 col-md-8">{{ user.telephone }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Role</div>
+									<div class="col-lg-9 col-md-8">{{ user.role }}</div>
+								</div>
+
+								<div class="row">
+									<div class="col-lg-3 col-md-4 label">Adresse</div>
+									<div class="col-lg-9 col-md-8">{{ user.address }}</div>
+								</div>
+
+							</div>
+						</div>
+						<!-- End Bordered Tabs -->
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+</main><!-- End #main -->{% endblock %}

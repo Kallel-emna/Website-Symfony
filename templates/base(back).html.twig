@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html>
+
+
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+	<title>
+		{% block title %}
+			Dashboard Clinimate
+		{% endblock %}
+	</title>
+	<meta content="" name="description">
+	<meta
+	content="" name="keywords">
+
+	<!-- Favicons -->
+	<link href="{{asset('img/favicon.png')}}" rel="icon">
+	<link
+	href="{{asset('img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.gstatic.com" rel="preconnect">
+	<link
+	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+	<!-- Vendor CSS Files -->
+	<link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+	<link href="{{asset('vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+	
+
+
+	<!-- Template Main CSS File -->
+	<link href="{{asset('css/style1.css')}}" rel="stylesheet"> {% block css %}{% endblock %}
+	</html>
+	<html>
+		<body>
+			{% if app.user!=null %}
+				{% block header %}
+
+					{% if is_granted('ROLE_ADMIN') %}
+						<header id="header" class="header fixed-top d-flex align-items-center">
+
+							<div class="d-flex align-items-center justify-content-between">
+								<a href="{{ path('app_user_index') }}" class="logo d-flex align-items-center">
+									<img src="{{asset('img/hero-img.png')}}" alt="">
+									<span class="d-none d-lg-block">Clinimate</span>
+								</a>
+								<i class="bi bi-list toggle-sidebar-btn"></i>
+							</div>
+							<!-- End Logo -->
+
+
+							<!-- End Search Bar -->
+
+							<nav class="header-nav ms-auto">
+								<ul class="d-flex align-items-center">
+
+									<li class="nav-item d-block d-lg-none">
+										<a class="nav-link nav-icon search-bar-toggle " href="#">
+											<i class="bi bi-search"></i>
+										</a>
+									</li>
+									<!-- End Search Icon-->
+
+
+									<li class="nav-item dropdown pe-3">
+
+										<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+
+
+											<span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.lastname }}{{ app.user.firstname }}</span>
+
+										</a>
+										<!-- End Profile Iamge Icon -->
+
+										<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+											<li class="dropdown-header">
+
+												<h6>{{ app.user.lastname }}
+													{{ app.user.firstname }}</h6>
+												<span>ADMIN</span>
+
+											</li>
+
+
+											<li>
+												{% if app.user %}
+
+													<a class="dropdown-item d-flex align-items-center" href="{{path('app_user_show', {'id': app.user.id}) }}">
+														<i class="bi bi-person"></i>
+														<span>Mon Profil</span>
+													</a>
+												{% endif %}
+											</li>
+											<li>
+												<hr class="dropdown-divider">
+											</li>
+											<li>
+												<a class="dropdown-item d-flex align-items-center" href="{{ path('app_logout') }}">
+													<i class="bi bi-box-arrow-right"></i>
+													<span>Se déconnecter</span>
+												</a>
+											</li>
+
+										</ul>
+										<!-- End Profile Dropdown Items -->
+									</li>
+									<!-- End Profile Nav -->
+
+								</ul>
+							</nav>
+							<!-- End Icons Navigation -->
+
+						</header>
+						<!-- End Header -->
+						<aside id="sidebar" class="sidebar">
+
+							<ul class="sidebar-nav" id="sidebar-nav">
+
+								<li class="nav-heading">Tache Admin</li>
+								<li class="nav-item">
+									<a class="nav-link collapsed" href="{{ path('app_user_index') }}">
+										<i class="bi bi-grid"></i>
+										<span>Utilisateurs</span>
+									</a>
+								</li>
+
+								<a class="nav-link collapsed" href="{{path('app_user_new') }}">
+									<i class="bi bi-menu-button-wide"></i>
+									<span>Ajouter un nouveau compte</span>
+								</a>
+								<li class="nav-heading">Tache Medecin</li>
+
+								<a class="nav-link collapsed" href="{{ path('app_calendar_index') }}">
+									<i class="bi bi-menu-button-wide"></i>
+									<span>Ajouter des événements dans le calendrier</span>
+								</a>
+								<a class="nav-link collapsed" href="{{ path('app_calendrier_admin') }}">
+									<i class="bi bi-grid"></i>
+									<span>Voir tous les événements</span>
+								</a>
+								<a class="nav-link collapsed" href="{{ path('app_ordonnance_index') }}">
+
+									<i class="bi bi-grid"></i>
+									<span>Ordonnance</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_dossier') }}">
+									<i class="bi bi-grid"></i>
+									<span>Dossier Medical</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_consultation_index') }}" class="active">
+									<i class="bi bi-grid"></i>
+									<span>Consultation</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_cart') }}">
+									<i class="bi bi-grid"></i>
+
+									<span>Panier</span>
+									{%if app.session.get('cart') %}
+										{{app.session.get('cartData').data.quantityCart}}
+									{% else %}
+										0
+									{% endif %}
+								</a>
+								<li class="nav-heading">Tache Patient</li>
+								<a class="nav-link collapsed" href="{{ path('app_rendez_vous_new1') }}">
+									<i class="bi bi-menu-button-wide"></i>
+									<span>Ajouter RDV</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_rendez_vous_index1') }}">
+
+									<i class="bi bi-grid"></i>
+									<span>Historique RDV</span>
+								</a>
+								<a class="nav-link collapsed" href="{{ path('showBilan',{'id':app.user.id}) }}">
+
+									<i class="bi bi-grid"></i>
+									<span>Bilan Medical</span>
+								</a>
+
+
+								<li class="nav-heading">Tache Receptionniste</li>
+
+								<a class="nav-link collapsed" href="{{ path('app_service_index') }}">
+									<i class="bi bi-grid"></i>
+									<span>Service</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_reservation_chambre_index') }}">
+									<i class="bi bi-grid"></i>
+									<span>Reservation Chambre</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_chambre_index') }}" class="active">
+									<i class="bi bi-grid"></i>
+									<span>Chambre</span>
+								</a>
+
+								<li class="nav-heading">Tache Pharmacien</li>
+								<a class="nav-link collapsed" href="{{ path('app_categorie_index') }}">
+									<i class="bi bi-grid"></i>
+									<span>
+										Catégorie
+									</span>
+								</a>
+								<a class="nav-link collapsed" href="{{ path('app_produit_index') }}" class="active">
+									<i class="bi bi-bar-chart"></i>
+									<span>
+										Produit
+									</span>
+								</a>
+							</ul>
+
+						</aside>
+					{% elseif is_granted('ROLE_PATIENT') %}
+						<header id="header" class="header fixed-top d-flex align-items-center">
+
+							<div class="d-flex align-items-center justify-content-between">
+								<a href="{{ path('app_user_index') }}" class="logo d-flex align-items-center">
+									<img src="{{asset('img/hero-img.png')}}" alt="">
+									<span class="d-none d-lg-block">Clinimate</span>
+								</a>
+								<i class="bi bi-list toggle-sidebar-btn"></i>
+							</div>
+							<!-- End Logo -->
+
+
+							<!-- End Search Bar -->
+
+							<nav class="header-nav ms-auto">
+								<ul class="d-flex align-items-center">
+
+									<li class="nav-item d-block d-lg-none">
+										<a class="nav-link nav-icon search-bar-toggle " href="#">
+											<i class="bi bi-search"></i>
+										</a>
+									</li>
+									<!-- End Search Icon-->
+
+
+									<li class="nav-item dropdown pe-3">
+
+										<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+
+
+											<span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.lastname }}{{ app.user.firstname }}</span>
+
+										</a>
+										<!-- End Profile Iamge Icon -->
+
+										<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+											<li class="dropdown-header">
+
+												<h6>{{ app.user.lastname }}
+													{{ app.user.firstname }}</h6>
+												<span>Patient</span>
+
+											</li>
+
+
+											<li>
+												{% if app.user %}
+
+													<a class="dropdown-item d-flex align-items-center" href="{{path('app_user_show', {'id': app.user.id}) }}">
+														<i class="bi bi-person"></i>
+														<span>Mon Profil</span>
+													</a>
+												{% endif %}
+											</li>
+											<li>
+												<hr class="dropdown-divider">
+											</li>
+											<li>
+												<a class="dropdown-item d-flex align-items-center" href="{{ path('app_logout') }}">
+													<i class="bi bi-box-arrow-right"></i>
+													<span>Se déconnecter</span>
+												</a>
+											</li>
+
+										</ul>
+										<!-- End Profile Dropdown Items -->
+									</li>
+									<!-- End Profile Nav -->
+
+								</ul>
+							</nav>
+							<!-- End Icons Navigation -->
+
+						</header>
+						<!-- End Header -->
+						<aside id="sidebar" class="sidebar">
+
+							<ul class="sidebar-nav" id="sidebar-nav">
+								<li class="nav-heading">Tache Patient</li>
+
+								<a class="nav-link collapsed" class="nav-link collapsed" href="{{ path('showBilan',{'id':app.user.id}) }}">
+
+									<i class="bi bi-grid"></i>
+									<span>Bilan Medical</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_rendez_vous_index1') }}">
+
+									<i class="bi bi-grid"></i>
+									<span>Historique RDV</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_rendez_vous_new1') }}">
+
+									<i class="bi bi-grid"></i>
+									<span>Ajouter RDV</span>
+								</a>
+							</ul>
+
+
+						</aside>
+
+					{% elseif is_granted('ROLE_Doctor') %}
+
+						<header id="header" class="header fixed-top d-flex align-items-center">
+
+							<div class="d-flex align-items-center justify-content-between">
+								<a href="{{ path('app_user_index') }}" class="logo d-flex align-items-center">
+									<img src="{{asset('img/hero-img.png')}}" alt="">
+									<span class="d-none d-lg-block">Clinimate</span>
+								</a>
+								<i class="bi bi-list toggle-sidebar-btn"></i>
+							</div>
+							<!-- End Logo -->
+
+
+							<!-- End Search Bar -->
+
+							<nav class="header-nav ms-auto">
+								<ul class="d-flex align-items-center">
+
+									<li class="nav-item d-block d-lg-none">
+										<a class="nav-link nav-icon search-bar-toggle " href="#">
+											<i class="bi bi-search"></i>
+										</a>
+									</li>
+									<!-- End Search Icon-->
+
+
+									<li class="nav-item dropdown pe-3">
+
+										<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+
+
+											<span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.lastname }}{{ app.user.firstname }}</span>
+
+										</a>
+										<!-- End Profile Iamge Icon -->
+
+										<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+											<li class="dropdown-header">
+
+												<h6>{{ app.user.lastname }}
+													{{ app.user.firstname }}</h6>
+												<span>Medecin</span>
+
+											</li>
+
+
+											<li>
+												{% if app.user %}
+
+													<a class="dropdown-item d-flex align-items-center" href="{{path('app_user_show', {'id': app.user.id}) }}">
+														<i class="bi bi-person"></i>
+														<span>Mon Profil</span>
+													</a>
+												{% endif %}
+											</li>
+											<li>
+												<hr class="dropdown-divider">
+											</li>
+											<li>
+												<a class="dropdown-item d-flex align-items-center" href="{{ path('app_logout') }}">
+													<i class="bi bi-box-arrow-right"></i>
+													<span>Se déconnecter</span>
+												</a>
+											</li>
+
+										</ul>
+										<!-- End Profile Dropdown Items -->
+									</li>
+									<!-- End Profile Nav -->
+
+								</ul>
+							</nav>
+							<!-- End Icons Navigation -->
+
+						</header>
+
+						<aside id="sidebar" class="sidebar">
+
+							<ul class="sidebar-nav" id="sidebar-nav">
+								<li class="nav-heading">Medical</li>
+
+
+								<a class="nav-link collapsed" href="{{path('app_calendrier')}}">
+									<i class="bi bi-grid"></i>
+									<span>Voir planning</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_ordonnance_index') }}">
+
+									<i class="bi bi-grid"></i>
+									<span>Ordonnance</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_bilan') }}" class="active">
+									<i class="bi bi-grid"></i>
+									<span>Bilan Medical</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_dossier') }}">
+									<i class="bi bi-grid"></i>
+									<span>Dossier Medical</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_consultation_index') }}" class="active">
+									<i class="bi bi-grid"></i>
+									<span>Consultation</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_rendez_vous_index') }}">
+									<i class="bi bi-grid"></i>
+									<span>RDV</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_produit_index2') }}">
+									<i class="bi bi-grid"></i>
+									<span>Produit</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_cart') }}">
+									<i class="bi bi-grid"></i>
+									<span>Panier</span>
+									{%if app.session.get('cart') %}
+										{{app.session.get('cartData').data.quantityCart}}
+									{% else %}
+										0
+									{% endif %}
+								</a>
+
+							</ul>
+
+						</aside>
+						<!-- End Sidebar-->
+
+					{% elseif is_granted('ROLE_RECEPT') %}
+						<header id="header" class="header fixed-top d-flex align-items-center">
+
+							<div class="d-flex align-items-center justify-content-between">
+								<a href="{{ path('app_user_index') }}" class="logo d-flex align-items-center">
+									<img src="{{asset('img/hero-img.png')}}" alt="">
+									<span class="d-none d-lg-block">Clinimate</span>
+								</a>
+								<i class="bi bi-list toggle-sidebar-btn"></i>
+							</div>
+							<!-- End Logo -->
+
+
+							<!-- End Search Bar -->
+
+							<nav class="header-nav ms-auto">
+								<ul class="d-flex align-items-center">
+
+									<li class="nav-item d-block d-lg-none">
+										<a class="nav-link nav-icon search-bar-toggle " href="#">
+											<i class="bi bi-search"></i>
+										</a>
+									</li>
+									<!-- End Search Icon-->
+
+
+									<li class="nav-item dropdown pe-3">
+
+										<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+
+
+											<span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.lastname }}{{ app.user.firstname }}</span>
+
+										</a>
+										<!-- End Profile Iamge Icon -->
+
+										<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+											<li class="dropdown-header">
+
+												<h6>{{ app.user.lastname }}
+													{{ app.user.firstname }}</h6>
+												<span>Receptionniste</span>
+
+											</li>
+
+
+											<li>
+												{% if app.user %}
+
+													<a class="dropdown-item d-flex align-items-center" href="{{path('app_user_show', {'id': app.user.id}) }}">
+														<i class="bi bi-person"></i>
+														<span>Mon Profil</span>
+													</a>
+												{% endif %}
+											</li>
+											<li>
+												<hr class="dropdown-divider">
+											</li>
+											<li>
+												<a class="dropdown-item d-flex align-items-center" href="{{ path('app_logout') }}">
+													<i class="bi bi-box-arrow-right"></i>
+													<span>Se déconnecter</span>
+												</a>
+											</li>
+
+										</ul>
+										<!-- End Profile Dropdown Items -->
+									</li>
+									<!-- End Profile Nav -->
+
+								</ul>
+							</nav>
+							<!-- End Icons Navigation -->
+
+						</header>
+						<aside id="sidebar" class="sidebar">
+
+							<ul class="sidebar-nav" id="sidebar-nav">
+
+								<li class="nav-heading">Receptionniste</li>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_service_index') }}">
+									<i class="bi bi-grid"></i>
+									<span>Service</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_reservation_chambre_index') }}">
+									<i class="bi bi-grid"></i>
+									<span>Reservation Chambre</span>
+								</a>
+
+								<a class="nav-link collapsed" href="{{ path('app_chambre_index') }}" class="active">
+									<i class="bi bi-grid"></i>
+									<span>Chambre</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_rendez_vous_index') }}">
+									<i class="bi bi-grid"></i>
+									<span>RDV</span>
+								</a>
+
+							</ul>
+
+							<!-- End Charts Nav -->
+
+
+						</aside>
+						<!-- End Sidebar-->
+					{% elseif is_granted('ROLE_PHARMACIEN') %}
+						<header id="header" class="header fixed-top d-flex align-items-center">
+
+							<div class="d-flex align-items-center justify-content-between">
+								<a href="{{ path('app_user_index') }}" class="logo d-flex align-items-center">
+									<img src="{{asset('img/hero-img.png')}}" alt="">
+									<span class="d-none d-lg-block">Clinimate</span>
+								</a>
+								<i class="bi bi-list toggle-sidebar-btn"></i>
+							</div>
+							<!-- End Logo -->
+
+
+							<!-- End Search Bar -->
+
+							<nav class="header-nav ms-auto">
+								<ul class="d-flex align-items-center">
+
+									<li class="nav-item d-block d-lg-none">
+										<a class="nav-link nav-icon search-bar-toggle " href="#">
+											<i class="bi bi-search"></i>
+										</a>
+									</li>
+									<!-- End Search Icon-->
+
+
+									<li class="nav-item dropdown pe-3">
+
+										<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+
+
+											<span class="d-none d-md-block dropdown-toggle ps-2">{{ app.user.lastname }}{{ app.user.firstname }}</span>
+
+										</a>
+										<!-- End Profile Iamge Icon -->
+
+										<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+											<li class="dropdown-header">
+
+												<h6>{{ app.user.lastname }}
+													{{ app.user.firstname }}</h6>
+												<span>Pharmacien</span>
+
+											</li>
+
+
+											<li>
+												{% if app.user %}
+
+													<a class="dropdown-item d-flex align-items-center" href="{{path('app_user_show', {'id': app.user.id}) }}">
+														<i class="bi bi-person"></i>
+														<span>Mon Profil</span>
+													</a>
+												{% endif %}
+											</li>
+											<li>
+												<hr class="dropdown-divider">
+											</li>
+											<li>
+												<a class="dropdown-item d-flex align-items-center" href="{{ path('app_logout') }}">
+													<i class="bi bi-box-arrow-right"></i>
+													<span>Se déconnecter</span>
+												</a>
+											</li>
+
+										</ul>
+										<!-- End Profile Dropdown Items -->
+									</li>
+									<!-- End Profile Nav -->
+
+								</ul>
+							</nav>
+							<!-- End Icons Navigation -->
+
+						</header>
+						<aside id="sidebar" class="sidebar">
+
+							<ul class="sidebar-nav" id="sidebar-nav">
+
+								<li class="nav-heading">Tache Pharmacien</li>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_categorie_index') }}">
+									<i class="bi bi-circle"></i>
+
+									<span>Catégorie</span>
+								</a>
+
+
+								<a class="nav-link collapsed" href="{{ path('app_produit_index') }}">
+									<i class="bi bi-bar-chart"></i>
+
+									<span>Produit</span>
+								</a>
+
+							</ul>
+
+						</aside>
+					{% endif %}
+					<main id="main" class="main">
+						{% block body %}{% endblock %}
+					</main>
+				{% endblock %}
+				{% block footer %}
+
+					<!-- ======= Footer ======= -->
+					<footer id="footer" class="footer">
+						<div class="copyright">
+							&copy; Copyright
+							<strong>
+								<span>Clinimate</span>
+							</strong>. All Rights Reserved
+						</div>
+						<div class="credits"><!-- All the links in the footer should remain intact. -->
+							<!-- You can delete the links only if you purchased the pro version. -->
+							<!-- Licensing information: https://bootstrapmade.com/license/ -->
+							<!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+
+						</div>
+					</footer>
+					<!-- End Footer -->
+				{% endblock %}
+			{% endif %}
+
+			<!-- Vendor JS Files -->
+			
+			<script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+			
+			
+			<script src="{{asset('js/main1.js')}}"></script>
+			{% block js %}{% endblock %}
+			{% if app.user ==null %}
+				<div class="container">
+					<section class="section error-404 min-vh-100 d-flex flex-column align-items-center justify-content-center">
+						<h1>404</h1>
+						<h2>The page you are looking for doesn't exist.</h2>
+						<a href="{{ path('app_logout') }}">back to login</a>
+						<div class="credits"></div>
+					</section>
+				</div><!-- End Footer -->{% endif %}
+		</body>
+	</html>
+</body></html></body></html></body></html></body></html>

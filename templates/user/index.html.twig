@@ -1,0 +1,77 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}User index
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="col-12">
+
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				
+				<h5 class="card-title">Nos utilisateurs</h5>
+
+
+
+			</div>
+			<div class="dataTable-container">
+				<table class="table table-borderless datatable dataTable-table">
+					<thead>
+						<tr>
+							<th scope="col" data-sortable="" style="width: 15.601%;">
+								<a href="#" class="dataTable-sorter">Identifiant</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 26.3427%;">
+								<a href="#" class="dataTable-sorter">Email</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 22.5064%;">
+								<a href="#" class="dataTable-sorter">Prénom</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 22.5064%;">
+								<a href="#" class="dataTable-sorter">Nom</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 27.3427%;">
+								<a href="#" class="dataTable-sorter">Addresse</a>
+							</th>
+							<th scope="col" data-sortable="" style="width: 15.601%;">
+								<a href="#" class="dataTable-sorter">Téléphone</a>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for user in users %}
+
+							<tr>
+								<td>{{ user.id }}</td>
+								<td>{{ user.email }}</td>
+								<td>{{ user.firstname }}</td>
+								<td>{{ user.lastname }}</td>
+								<td>{{ user.address }}</td>
+								<td>{{ user.telephone }}</td>
+								<td>
+									<a href="{{ path('app_user_edit', {'id': user.id}) }}">
+										<span class="badge bg-success">Afficher/Modifier/Supprimer</span>
+									</a>
+
+								</td>
+
+							{% else %}
+								<tr>
+									<td colspan="10">Aucun utilisateur</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</tbody>
+				</table>
+			</div>
+			<div class="dataTable-bottom">
+				{% do users.setPageRange(3) %}
+				{{knp_pagination_render(users,'pagination.html.twig')}}
+			</div>
+		</div>
+
+	</div>
+<a href="{{ path('app_user_new') }}" class="btn btn-lg btn-secondary">Créer un nouveau compte</a>
+</div>{% endblock %}

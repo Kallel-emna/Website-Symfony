@@ -1,0 +1,29 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}{% endblock %}
+{% block body %}
+	<a href="{{ path('app_user_index') }}" class="btn btn-info">back to list</a>
+	<div class="card mb-3">
+
+		<div class="card-body">
+
+			<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+
+
+				<div class="pt-4 pb-2">
+					<h5 class="card-title text-center pb-0 fs-4">Modifier compte </h5>
+				</div>
+				<div class="row g-3 needs-validation">
+					{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+					{{ include('user/_delete_form.html.twig') }}
+
+
+				</div>
+
+			</div>
+
+
+		</section>
+	</div>
+
+</div>{% endblock %}

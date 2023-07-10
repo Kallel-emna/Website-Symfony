@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+	<div class="container">
+		<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
+
+						<div class="d-flex justify-content-center py-4">
+							<a href="/" class="logo d-flex align-items-center w-auto">
+								<img src="{{asset('img/hero-img.png')}}" alt="">.
+								<span class="d-none d-lg-block">Clinimate</span>
+							</a>
+						</div>
+						<div class="card mb-3">
+							<div class="card-body">
+								<div class="pt-4 pb-2">
+									<h5 class="card-title text-center pb-0 fs-4">Connectez-Vous</h5>
+									<p class="text-center small">Entrez votre mail & mot de passe pour vous connecter</p>
+								</div>
+								<form
+									method="post" class="row g-3 needs-validation" novalidate>
+
+									<!-- End Logo -->
+									{% if error %}
+										<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+									{% endif %}
+
+									{% if app.user %}
+										<div class="mb-3">
+											Vous êtes connecté en tant que
+											{{ app.user.userIdentifier }},
+											<a href="{{ path('app_logout') }}">Déconnexion</a>
+										</div>
+									{% endif %}
+
+									<div class="col-12">
+										<label for="inputEmail">Email</label>
+										<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+									</div>
+
+									<div class="col-12">
+										<label for="inputPassword">Mot de passe</label>
+										<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+										<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+									</div>
+
+									<div class="col-12">
+										<p class="small mb-0">
+											<a href="{{ path('forgot_password') }} ">Mot de passe oublié</a>
+										</p>
+									</div>
+
+									<div class="col-12">
+										<button class="btn btn-primary w-100" type="submit">Connexion</button>
+									</div>
+
+									<div class="col-12">
+										<p class="small mb-0">Pas de compte?
+											<a href="{{ path('app_register') }} ">Créer un compte</a>
+										</p>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</section>
+	</div>
+{% endblock %}

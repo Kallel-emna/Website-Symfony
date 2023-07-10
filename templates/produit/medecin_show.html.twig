@@ -1,0 +1,68 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Produit index{% endblock %}
+
+{% block body %}
+
+    <h1>Produit index</h1>
+
+    <a href="{{ path('app_produit_new') }}">Ajouter Produit</a>
+
+	<div class="col-12">
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				<h5 class="card-title">Produits
+				</h5>
+
+				
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<thead>
+							<tr>
+								<th scope="col" data-sortable="" style="width: 15.601%;">
+									<a href="#" class="dataTable-sorter">#ID</a>
+								</th>
+								<th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Nom</a>
+								</th>
+                                <th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Quantité</a>
+								</th>
+                                <th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Categorie</a>
+								</th>
+								<th scope="col" data-sortable="" style="width: 22.5064%;">
+									<a href="#" class="dataTable-sorter">Actions</a>
+								</th>
+								
+							</tr>
+						</thead>
+        <tbody>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.id }}</td>
+                <td>{{ produit.nomProduit }}</td>
+                <td>{{ produit.quantite }}</td>
+                <td>{{ produit.Categorie }}</td>
+               
+                <td>
+           
+                    <a href="{{ path('CartAdd', {'id': produit.id}) }}" ><img src="{{asset('img/panier.png')}}" alt=""></a>
+                </td>
+            </tr>x
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+				
+			</div>
+
+		</div>
+
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+
+<label for="inputText">
+	firstname
+</label>
+<div class="col-12">
+	{{ form_widget(form.firstname,{'attr':{'class':'form-control'}}) }}
+</div>
+<label for="inputText">
+	lastname
+</label>
+
+<div class="col-12">
+	{{ form_widget(form.lastname,{'attr':{'class':'form-control'}}) }}
+</div>
+<label for="inputText">email
+</label>
+<div class="col-12">
+	{{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+</div>
+
+<label for="inputText">
+	adrress
+</label>
+<div class="col-12">
+	{{ form_widget(form.address,{'attr':{'class':'form-control'}}) }}
+</div>
+<label for="inputText">
+	your phone</label>
+<div class="col-12">
+	{{ form_widget(form.telephone,{'attr':{'class':'form-control'}}) }}
+</div>
+<label for="inputText">
+	photo
+</label>
+
+<button class="badge bg-success">{{ button_label|default('Update') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,48 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Nouveau Produit
+{% endblock %}
+{% block body %}
+
+	{% for message in app.flashes('notification') %}
+		<div class="alert alert-info alert-dismissible fade show">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	{% endfor %}
+
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Ajouter Produit</h5>
+
+			<!-- General Form Elements -->
+			{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+			<label for="inputText" class="col-sm-4 col-form-label">Nom</label>
+			<div class="col-sm-10">
+				{{ form_widget(form.nom_produit, {'attr': {'class': 'form-control'}}) }}
+			</div>
+			{{ form_errors(form.nom_produit,{'attr':{'class':'text-danger'}}) }}
+
+
+			<label for="inputText" class="col-sm-4 col-form-label">Quantité</label>
+			<div class="col-sm-10">
+				{{ form_widget(form.quantite, {'attr': {'class': 'form-control'}}) }}
+
+			</div>
+			{{ form_errors(form.quantite,{'attr':{'class':'text-danger'}}) }}
+
+
+			<label for="inputText" class="col-sm-4 col-form-label">Prix</label>
+			<div class="col-sm-10">
+				{{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+
+			</div>
+			{{ form_errors(form.prix,{'attr':{'class':'text-danger'}}) }}
+
+		</div>
+	</div>
+
+	{{ include('produit/_form.html.twig', {'button_label': 'Valider'}, {'href':"{{ path('app_produit_index') }}" },{'class':'btn btn-success '}) }}
+{% endblock %}

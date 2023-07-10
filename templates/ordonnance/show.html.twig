@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<title>Ordonnance</title>
+
+{% block body %}
+    <h1>Ordonnance</h1>
+
+    <table class="table">
+        <tbody>
+          <tr>
+                <th>Id ordonnance</th>
+                <td>{{ ordonnance.id }}</td>
+            </tr>
+          
+            <tr>
+                <th>Nom patient</th>
+                <td>{{ ordonnance.nompatient }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ ordonnance.date ? ordonnance.date|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Médicament</th>
+                <td>{{ ordonnance.medicament }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_ordonnance_index') }}">Retour à la liste</a>
+
+    <a href="{{ path('app_ordonnance_edit', {'id': ordonnance.id}) }}">Modifier</a>
+
+    {{ include('ordonnance/_delete_form.html.twig') }}
+       
+{% endblock %}

@@ -1,0 +1,58 @@
+
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <h1 align= "center">Facture Patient</h1>
+
+    <table class="table">
+        <tbody>
+          
+            <tr>
+                <th>Prenom</th>
+                <td>{{ patient.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ patient.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ patient.email }}</td>
+            </tr>
+
+            <tr>
+                <th>Address</th>
+                <td>{{ patient.address }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ patient.telephone }}</td>
+            </tr>
+
+            <tr>
+                <th>Date_admission</th>
+                <td>{{ patient.dateAdmission ? patient.dateAdmission|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Date_sortie</th>
+                <td>{{ patient.dateSortie ? patient.dateSortie|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de jours à l'hôpital:     </th>
+           <td> <p>{{ nombreJours }}</p></td>
+            </tr>
+            <tr>
+                <th>prix de la chambre par nuité:     </th>
+           <td> <p>{{ prix }}</p></td>
+            </tr>
+            <tr>
+                <th>prix total </th>
+           <td> <p>{{ prixtotal }}</p></td>
+            </tr>
+
+        </tbody>
+    </table>
+<button><a href="{{ path('app_patient_index') }}">back to list</a></button>
+
+{% endblock %}

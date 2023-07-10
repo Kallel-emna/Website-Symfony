@@ -1,0 +1,70 @@
+
+{% extends 'base(back).html.twig' %}
+
+
+{% block body %}
+
+
+   <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>General Tables</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Tables</li>
+          <li class="breadcrumb-item active">General</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+<title>New Rendez-Vous</title>
+
+
+      <h1>Create new RendezVous</h1>
+  <div class="row">
+        <div  style="display: flex;align-items: center;justify-content: center;margin-top: 150px; padding: 10px;">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Ajouter Rendez-vous</h5>
+
+                    <!-- General Form Elements -->
+                    {{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+                        <label for="inputText" class="col-sm-4 col-form-label">Nom</label>
+                        <div class="col-sm-10">
+                               {{ form_widget(form.time, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                    {{ form_errors(form.time,{'attr':{'class':'text-danger'}}) }}
+
+
+
+                    <label for="inputText" class="col-sm-4 col-form-label">Date</label>
+                        <div class="col-sm-10">
+
+                               {{ form_widget(form.date_rendezvous, {'attr': {'class': 'form-control'}}) }}
+
+                    </div>
+                    {{ form_errors(form.date_rendezvous,{'attr':{'class':'text-danger'}}) }}
+
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+</body>
+ <a href="{{ path('app_rendez_vous_index') }}">Retour à la liste</a>
+{% endblock %}

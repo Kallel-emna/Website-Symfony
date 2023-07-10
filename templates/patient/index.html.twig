@@ -1,0 +1,66 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Patient index{% endblock %}
+{% block body %}
+    <h1>Service index</h1>
+    <main align="center">
+        <section class="section">
+          <div class="row">
+            <div class="col-lg-6">
+    
+                <div class="card-body">
+                  <h5 class="card-title">Chambre</h5>
+                  <!-- Default Table -->
+                  <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Firstname</th>
+                            <th>Lastname</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Address</th>
+                            <th>Telephone</th>
+                            <th>Date_admission</th>
+                            <th>Date_sortie</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for patient in patients %}
+                        <tr>
+                            <td>{{ patient.firstname }}</td>
+                            <td>{{ patient.lastname }}</td>
+                            <td>{{ patient.email }}</td>
+                            <td>{{ patient.password }}</td>
+                            <td>{{ patient.address }}</td>
+                            <td>{{ patient.telephone }}</td>
+                            <td>{{ patient.dateAdmission ? patient.dateAdmission|date('Y-m-d') : '' }}</td>
+                            <td>{{ patient.dateSortie ? patient.dateSortie|date('Y-m-d') : '' }}</td>
+                            <td>
+                              <button>  <a href="{{ path('app_patient_show', {'id': patient.id}) }}">show</a></button>
+                              <button>  <a href="{{ path('app_patient_edit', {'id': patient.id}) }}">edit</a></button>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="12">no records found</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            
+                <button> <a href="{{ path('app_patient_new') }}">Create new</a></button>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+</main><!-- End #main -->
+
+
+</body>
+
+{% endblock %}
+

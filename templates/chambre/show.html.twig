@@ -1,0 +1,88 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Chambre{% endblock %}
+
+{% block body %}
+    <h1 align="center">Chambre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chambre.id }}</td>
+            </tr>
+            <tr>
+                <th>Etage</th>
+                <td>{{ chambre.etage }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ chambre.prix }}</td>
+            </tr>
+            <tr>
+                <th>Capacite</th>
+                <td>{{ chambre.capacite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table">
+        <h1 align="center">Patients actuels</h1>
+        <thead>
+            <tr>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>email</th>
+                <th>telephone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.firstname }}</td> 
+                <td>{{ user.email}}</td>
+                <td>{{ user.telephone }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="table">
+        <tr>
+            <h1 align="center">Prochaines admissions</h1>
+        </tr>
+        <thead>
+            <tr>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>email</th>
+                <th>telephone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prochain in prochain %}
+            <tr>
+                <td>{{ prochain.lastname }}</td>
+                <td>{{ prochain.firstname }}</td> 
+                <td>{{ prochain.email}}</td>
+                <td>{{ prochain.telephone }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button><a href="{{ path('app_chambre_index') }}">back to list</a></button>
+
+    <button><a href="{{ path('app_chambre_edit', {'id': chambre.id}) }}">edit</a></button>
+
+    {{ include('chambre/_delete_form.html.twig') }}
+{% endblock %}

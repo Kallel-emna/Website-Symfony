@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<title>Consultation</title>
+
+{% block body %}
+    <h1>Consultation</h1>
+
+    <table class="table">
+        <tbody>
+           <tr>
+                <th>Id</th>
+                <td>{{ consultation.id }}</td>
+            </tr>
+        
+            <tr>
+                <th>Notes</th>
+                <td>{{ consultation.notes }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ consultation.prix }}</td>
+            </tr>
+          
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_consultation_index') }}">back to list</a>
+
+    <a href="{{ path('app_consultation_edit', {'id': consultation.id}) }}">edit</a>
+
+    {{ include('consultation/_delete_form.html.twig') }}
+{% endblock %}

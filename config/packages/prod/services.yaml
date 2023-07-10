@@ -1,0 +1,8 @@
+parameters:
+    mailer_dsn: '%env(MAILER_DSN)%'
+
+services:
+    # Configure the mailer
+    Symfony\Component\Mailer\MailerInterface:
+        factory: ['Symfony\Component\Mailer\Mailer', 'create']
+        arguments: ['%mailer_dsn%']

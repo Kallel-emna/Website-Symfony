@@ -1,0 +1,52 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Service 
+{% endblock %}
+
+{% block body %}
+
+
+		<div class="col-12">
+
+			<div class="card recent-sales overflow-auto">
+				<div class="card-body"><a href="{{ path('app_service_new') }}" class="btn btn-lg btn-secondary">Ajouter Service</a>
+					<h5 class="card-title">Chambre</h5>
+
+
+				</div>
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Nom_service</th>
+								<th>actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for service in services %}
+								<tr>
+									<td>{{ service.id }}</td>
+									<td>{{ service.nomService }}</td>
+									<td>
+										<a href="{{ path('app_service_show', {'id': service.id}) }}">show</a>
+										<a href="{{ path('app_service_edit', {'id': service.id}) }}">edit</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="3">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+						
+
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+{% endblock %}

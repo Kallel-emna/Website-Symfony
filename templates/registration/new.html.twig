@@ -1,0 +1,89 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Utilisateur
+{% endblock %}
+
+{% block body %}
+
+	{% for message in app.flashes('success') %}
+		<div class="flash-notice">
+			{{ message }}
+		</div>
+	{% endfor %}
+	{{ form_start(form,{attr:{novalidate:'novalidate'}}) }}
+
+	<div class="card">
+
+		<h1 class="h3 mb-3 font-weight-normal">Enregistrement</h1>
+
+		<div class="card-body">
+
+
+			<div class="col-12">
+				<label for="yourName" class="form-label">First name</label>
+
+				<div class="invalid-feedback">Please, enter your First name!</div>
+				{{ form_widget(form.firstname,{'attr':{'class':'form-control'}}) }}
+
+
+			</div>
+			{{ form_errors(form.firstname,{'attr':{'class':'text-danger'}}) }}
+
+
+			<div class="col-12">
+				<label for="yourName" class="form-label">Last name</label>
+
+				<div class="invalid-feedback">Please, enter your Last name!</div>
+				{{ form_widget(form.lastname,{'attr':{'class':'form-control'}}) }}
+
+			</div>
+			{{ form_errors(form.lastname,{'attr':{'class':'text-danger'}}) }}
+
+			<div class="col-12">
+				<label for="yourName" class="form-label">Your Email</label>
+
+				<div class="invalid-feedback">Please, enter your Email!</div>
+				{{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}</div>
+			{{ form_errors(form.email,{'attr':{'class':'text-danger'}}) }}
+
+			<div class="col-12">
+				<label for="yourName" class="form-label">Your Password</label>
+				<div class="invalid-feedback">Please, enter your Password!</div>
+				{{ form_widget(form.plainPassword,{
+										label: 'Password'
+									},{'attr':{'class':'form-control'}}) 
+																																																																	}}
+			</div>
+			{{ form_errors(form.plainPassword,{'attr':{'class':'text-danger'}}) }}
+
+			<div class="col-12">
+				<label for="yourName" class="form-label">Your role</label>
+				<div class="invalid-feedback">Please, choose !</div>
+				{{ form_widget(form.roles,{'attr':{'class':'form-control'}}) }}</div>
+			<div class="col-12">
+				<label for="yourName" class="form-label">Your telephone number</label>
+				<div class="invalid-feedback">Please, enter your telephone number!</div>
+				{{ form_widget(form.telephone,{'attr':{'class':'form-control'}}) }}</div>
+			{{ form_errors(form.telephone,{'attr':{'class':'text-danger'}}) }}
+			<div class="col-12">
+				<label for="yourName" class="form-label">Your Address</label>
+				<div class="invalid-feedback">Please, enter your Address!</div>
+				{{ form_widget(form.address,{'attr':{'class':'form-control'}}) }}</div>
+			{{ form_errors(form.address,{'attr':{'class':'text-danger'}}) }}
+
+
+			<div class="col-12">
+				<label for="yourName" class="form-label">Your agreeTerms</label>
+				<div class="invalid-feedback">you should agree our terms</div>
+				{{ form_widget(form.agreeTerms) }}</div>
+			{{ form_errors(form.agreeTerms,{'attr':{'class':'text-danger'}}) }}
+
+			<button type="submit" class="btn btn-primary w-100">ADD</button>
+		</div>
+	</div>
+
+	{{ form_end(form) }}
+
+
+	<a href="{{ path('app_user_index') }}" class="btn btn-info">back to list</a>
+{% endblock %}

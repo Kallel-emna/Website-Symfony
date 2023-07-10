@@ -1,0 +1,105 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Panier index{% endblock %}
+
+{% block body %}
+
+    <h1>Panier index</h1>
+
+
+	<div class="col-12">
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				<h5 class="card-title">Panier</h5>
+	            <a href="{{path('CartDelete')}}" type="button"> Supprimer votre panier </a>
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<thead>
+							<tr>
+								<th scope="col" data-sortable="" style="width: 15.601%;">
+									<a href="#" class="dataTable-sorter">Produit</a>
+								</th>
+								<th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Prix</a>
+								</th>
+                                <th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Quantité</a>
+								</th>
+                                <th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Total</a>
+								</th>
+								 <th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Supprimer</a>
+								</th>
+								
+								
+							</tr>
+						</thead>
+        <tbody>
+        {% if app.session.get('cart') %}
+          {% for e in cart.produits %}
+            <tr>
+                <td>{{ e.produit.nomProduit }}</td>
+                <td>{{ e.produit.prix}}</td>
+               
+                <td> 
+                <a href="{{ path('CartDelete1',{'id':e.produit.id})}}" type="button" value="-" class="minus"> - </a>
+                {{ e.quantity }}
+                <a href="{{path('CartAdd',{'id':e.produit.id})}}" type="button" value="+" class="plus"> + </a>
+                </td>
+                <td>{{ e.quantity * e.produit.prix}}</td>   
+                <td>
+                    <a href="{{path('CartDeleteAll',{'id':e.produit.id})}}">Supprimer</a>
+                </td>
+				<td>
+					<a href="{{ path('app_produit_reduce',{'id':e.produit.id})}}"> Valider</a>
+				</td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <p> Votre panier est vide! <a href="{{ path('app_produit_index')}}"
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+				
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<div class="col-12">
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				<h5 class="card-title">Panier Totaux</h5>
+	
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<tbody>
+							<tr>
+								<th scope="col" data-sortable="" style="width: 15.601%;">
+									<a href="#" class="dataTable-sorter">Panier sous Total HT</a>
+								</th>
+								<th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">TVA (20%)</a>
+								</th>
+                                <th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Total TTC</a>
+=								</th>							
+							</tr>
+                            <tr>
+                                <td>TND {{cart.data.subTotalHT}} </td>
+                                <td>TND {{cart.data.taxe}} </td>
+			                    <td>TND {{cart.data.subTotalTTC}} </td>						
+							</tr>
+                        </tbody>
+                    </table>        
+                </div>
+                    
+            </div>
+        </div>    
+{% endblock %}

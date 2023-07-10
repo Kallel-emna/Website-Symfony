@@ -1,0 +1,27 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}
+{% endblock %}
+{% block body %}
+
+	<h1>Edit</h1>
+	<section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+
+		<div class="card mb-3">
+
+			<div class="card-body">
+
+				<div class="pt-4 pb-2">
+					<h5 class="card-title text-center pb-0 fs-4">Mettre à jour compte</h5>
+					
+				</div>
+				<div class="row g-3 needs-validation">
+					{{ include('user/form_patient.html.twig', {'button_label': 'Update'}) }}
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</section>{% endblock %}

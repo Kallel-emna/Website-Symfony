@@ -1,0 +1,61 @@
+{% extends 'base(back).html.twig' %}
+
+{% block title %}Categorie
+{% endblock %}
+
+{% block body %}
+
+
+	<div class="col-12">
+
+		<div class="card recent-sales overflow-auto">
+			<div class="card-body">
+				<a href="{{ path('app_categorie_new') }}" class="btn btn-lg btn-secondary">Ajouter une catégorie</a>
+				<h5 class="card-title">Les catégories de produits
+				</h5>
+
+
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<thead>
+							<tr>
+								<th scope="col" data-sortable="" style="width: 15.601%;">
+									<a href="#" class="dataTable-sorter">#ID</a>
+								</th>
+								<th scope="col" data-sortable="" style="width: 26.3427%;">
+									<a href="#" class="dataTable-sorter">Nom</a>
+								</th>
+
+								<th scope="col" data-sortable="" style="width: 22.5064%;">
+									<a href="#" class="dataTable-sorter">Actions</a>
+								</th>
+
+
+							</tr>
+						</thead>
+
+						<tbody>
+							{% for categorie in categories %}
+								<tr>
+									<td>{{ categorie.id }}</td>
+									<td>{{ categorie.nomCat }}</td>
+									<td>
+										<a href="{{ path('app_categorie_show', {'id': categorie.id}) }}">Afficher</a>
+										<a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}"><img src="{{asset('img/edit.png')}}" alt=""></a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="3">no records found</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>>
+{% endblock %}

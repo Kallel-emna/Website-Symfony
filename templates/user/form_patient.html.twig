@@ -1,0 +1,35 @@
+{{ form_start(registrationForm,{'attr':{'novalidate':'novalidate'}}) }}
+
+<label for="inputText">
+	prenom
+</label>
+<div class="col-12">
+	{{ form_widget(registrationForm.firstname,{'attr':{'class':'form-control'}}) }}
+</div>
+<label for="inputText">
+	nom
+</label>
+
+<div class="col-12">
+	{{ form_widget(registrationForm.lastname,{'attr':{'class':'form-control'}}) }}
+</div>
+<label for="inputText">email
+</label>
+<div class="col-12">
+	{{ form_widget(registrationForm.email,{'attr':{'class':'form-control'}}) }}
+</div>
+<label for="inputText">
+	adresse
+</label>
+<div class="col-12">
+	{{ form_widget(registrationForm.address,{'attr':{'class':'form-control'}}) }}
+</div>
+<label for="inputText">
+	votre telephone</label>
+<div class="col-12">
+	{{ form_widget(registrationForm.telephone,{'attr':{'class':'form-control'}}) }}
+</div>
+
+
+<button class="badge bg-success">{{ button_label|default('Update') }}</button>
+{{ form_end(registrationForm) }}

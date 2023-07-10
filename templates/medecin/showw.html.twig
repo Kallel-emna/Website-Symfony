@@ -1,0 +1,87 @@
+{% extends 'base(back).html.twig' %}
+
+{% block body %}
+	<title>Medecin</title>
+
+	<main id="main" class="main">
+
+		<div class="pagetitle">
+			<h1>Medical</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="index.html">Home</a>
+					</li>
+					<li class="breadcrumb-item">Medical</li>
+					<li class="breadcrumb-item active">Bilan Medical</li>
+				</ol>
+			</nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-6"></div>
+
+				<div class="col-lg-6"></div>
+
+				<div class="cardd">
+					<div class="card-body">
+						<h5 class="card-title">Bilan medical</h5>
+						<p>
+							Bilan Médical des Patient</p>
+						<!-- Active table-borderless -->
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Antecedent</th>
+									<th scope="col">Taille</th>
+									<th scope="col">Poids</th>
+
+								
+									<th scope="col">Examens Biologiques</th>
+
+									
+								</tr>
+							</thead>
+							<tbody>
+								{% for s in  bilan %}
+									<tr>
+										<th scope="row">{{s.id}}</th>
+										<td>
+											{{ s.Antecedents }}</td>
+										<td>
+											{{ s.Taille}}</td>
+										<td>
+											{{ s.Poids}}</td>
+
+										<td>
+											{{ s.ExamensBiologiques }}</td>
+										
+
+									
+
+									</tr>
+								{% endfor %}
+
+
+							</tbody>
+						</table>
+						<!-- End Tables without borders -->
+
+					</div>
+				</div>
+
+
+			</div>
+
+
+		</section>
+
+	</main>
+	<!-- End #main -->
+
+
+</body>{% endblock %}

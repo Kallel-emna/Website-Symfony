@@ -1,0 +1,20 @@
+{% extends 'base(back).html.twig' %}
+
+
+{% block body %}
+	<body
+		class="togle-sidebar-btn">
+		<!-- ======= Sidebar ======= -->
+
+		<main id="main" class="main">
+			<!-- End Page Title -->
+			<title>Nouvelle Ordonnance</title>
+			<h1>Modifier Ordonnance</h1>
+
+			{{ include('ordonnance/_form.html.twig', {'button_label': 'Update'}) }}
+
+			<a href="{{ path('app_ordonnance_index') }}">Retour à la liste</a>
+
+			{{ include('ordonnance/_delete_form.html.twig') }}</div>
+	</body>
+</div></div></div></section></main><!-- End #main --></body>{% endblock %}

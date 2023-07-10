@@ -1,0 +1,6 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+app_profile:
+    path: /profile/{id}
+    controller: App\Controller\UseController::Profile

@@ -1,0 +1,63 @@
+{% extends 'base(back).html.twig' %}
+
+{% block body %}
+	<title>Patient</title>
+	<body class="togle-sidebar-btn">
+
+		<div class="col-12">
+
+			<div class="card recent-sales overflow-auto">
+				<div class="card-body">
+					
+					<h5 class="card-title">Les bilans</h5>
+
+
+				</div>
+				<div class="dataTable-container">
+					<table class="table table-borderless datatable dataTable-table">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Antecedent</th>
+								<th scope="col">Taille</th>
+								<th scope="col">Poids</th>
+
+
+								<th scope="col">Examens Biologiques</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							{% for s in  bilan %}
+								<tr>
+									<th scope="row">{{s.id}}</th>
+									<td>
+										{{ s.Antecedents }}</td>
+									<td>
+										{{ s.Taille}}</td>
+									<td>
+										{{ s.Poids}}</td>
+
+									<td>
+										{{ s.ExamensBiologiques }}</td>
+									
+
+
+								</tr>
+							{% endfor %}
+
+
+						</tbody>
+					</table>
+					<!-- End Tables without borders -->
+
+				</div>
+			</div>
+
+
+		</div>
+
+
+		<!-- End #main -->
+	</body>
+{% endblock %}

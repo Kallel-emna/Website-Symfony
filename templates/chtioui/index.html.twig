@@ -1,0 +1,49 @@
+{% extends 'base(back).html.twig' %}
+{% block body  %}
+
+
+<div class="col-12">
+
+	<div class="card recent-sales overflow-auto">
+		<div class="card-body">
+			<h5 class="card-title">Les rendez-vous
+			</h5>
+
+
+			<div class="dataTable-container">
+				<table class="table table-borderless datatable dataTable-table">
+					<thead>
+						<tr>
+
+							<th>Id_rendezvous</th>
+							<th>Heure</th>
+							<th>Date_rendezvous</th>
+							<th>Actions</th>
+							<th>Confirmation</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for rendez_vou in rendez_vouses %}
+							<tr>
+								<td>{{ rendez_vou.id }}</td>
+								<td>{{ rendez_vou.time ? rendez_vou.time|date('H:i:s') : '' }}</td>
+								<td>{{ rendez_vou.dateRendezvous ? rendez_vou.dateRendezvous|date('Y-m-d') : '' }}</td>
+
+								<td></td>
+								<td>{{ rendez_vou.Confirmation}}</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">Il n'y a pas de rendez-vous</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+{%endblock%}
